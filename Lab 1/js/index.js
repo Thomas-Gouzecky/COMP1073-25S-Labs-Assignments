@@ -40,6 +40,7 @@ function createCharacter(){
     characterName = nameField.value;
     age = ageField.value;
     favoriteFood = favFoodField.value;
+    isSuperhero = superpowersButton.checked;
 
     let description = `Meet the ${age} year old, ${favoriteFood} loving, ${characterName}!`;
 
