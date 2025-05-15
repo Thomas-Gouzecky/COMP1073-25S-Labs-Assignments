@@ -1,7 +1,7 @@
 let characterName = `The Incredible Burrito Boy`;
 let age = Math.ceil(Math.random()*100);
 let isSuperhero = true;
-let specialPowers = ["X-Ray Vision", "Mind Reading", "Teleportation", "Telekinesis", "Flight", "Invisibility", "Super Strength", "Immortality"];
+const specialPowers = ["X-Ray Vision", "Mind Reading", "Teleportation", "Telekinesis", "Flight", "Invisibility", "Super Strength", "Immortality"];
 const listOfFoods = ["Pizza", "Sushi", "Tacos", "Pasta", "Burgers", "Ice Cream", "Fried Chicken", "Ramen", "Steak", "Burritos"];
 let favoriteFood = listOfFoods[9];
 
@@ -11,7 +11,7 @@ let favFoodField = document.querySelector('#favFood');
 let heroDescription = document.querySelector('#heroDescription');
 
 let randomButton = document.querySelector('button#randomButton');
-let createButton = document.querySelector('button');
+let createButton = document.querySelector('button#create');
 
 nameField.placeholder = characterName;
 ageField.placeholder = age;
@@ -32,7 +32,14 @@ function createCharacter(){
         isSuperhero = false;
     }
 
-    heroDescription.textContent = `Meet the ${favoriteFood} loving, ${characterName}! `
+    let description = `Meet the ${age} year old, ${favoriteFood} loving, ${characterName}!`;
+
+    if(isSuperhero){
+        let power = specialPowers[Math.floor(Math.random() * specialPowers.length)];
+        description += ` With the power of ${power}, you don't want to mess with them!`;
+    }
+    heroDescription.textContent = description;
 }
 
+createButton.addEventListener('click', createCharacter);
 randomButton.addEventListener('click', randomizeAttr);
