@@ -1,6 +1,6 @@
-let characterName;
-let age;
-let isSuperhero;
-let specialPowers;
-let favoriteFood;
-const listOfFoods = ["Pizza", "Sushi", "Tacos", "Pasta", "Burgers", "Ice Cream", "Fried Chicken", "Ramen", "Steak", "Chocolate"];
+let characterName = `The Incredible Burrito Boy`;
+let age = Math.ceil(Math.random()*100);
+let isSuperhero = true;
+let specialPowers = ["X-Ray Vision", "Mind Reading", "Teleportation", "Telekinesis", "Flight", "Invisibility", "Super Strength", "Immortality"];
+let favoriteFood = listOfFoods[9];
+const listOfFoods = ["Pizza", "Sushi", "Tacos", "Pasta", "Burgers", "Ice Cream", "Fried Chicken", "Ramen", "Steak", "Burritos"];
