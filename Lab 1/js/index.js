@@ -26,6 +26,10 @@ function randomizeAttr(){
 
 function createCharacter(){
     
+    characterName = nameField.value;
+    age = ageField.value;
+    favoriteFood = favFoodField.value;
+
     if (Math.round(Math.random()) === 1){
         isSuperhero = true;
     }
