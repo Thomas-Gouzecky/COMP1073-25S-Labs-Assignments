@@ -13,18 +13,19 @@ let heroDescription = document.querySelector('#heroDescription');
 let randomButton = document.querySelector('button#randomButton');
 let createButton = document.querySelector('button#create');
 
-nameField.placeholder = characterName;
-ageField.placeholder = age;
-favFoodField.placeholder = favoriteFood;
+nameField.value = characterName;
+ageField.value = age;
+favFoodField.value = favoriteFood;
 
 function randomizeAttr(){
     age = Math.ceil(Math.random()*100);
     favoriteFood = listOfFoods[Math.floor(Math.random() * listOfFoods.length)];
-    ageField.placeholder = age;
-    favFoodField.placeholder = favoriteFood;
+    ageField.value = age;
+    favFoodField.value = favoriteFood;
 }
 
 function createCharacter(){
+    
     if (Math.round(Math.random()) === 1){
         isSuperhero = true;
     }
