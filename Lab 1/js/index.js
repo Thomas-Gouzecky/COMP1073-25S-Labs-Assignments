@@ -12,23 +12,18 @@ let heroDescription = document.querySelector('#heroDescription');
 
 let randomButton = document.querySelector('button#randomButton');
 let createButton = document.querySelector('button#create');
+let superpowersButton = document.querySelector('#superpowerToggle');
 
 nameField.value = characterName;
 ageField.value = age;
 favFoodField.value = favoriteFood;
+superpowersButton.checked = isSuperhero;
 
 function randomizeAttr(){
     age = Math.ceil(Math.random()*100);
     favoriteFood = listOfFoods[Math.floor(Math.random() * listOfFoods.length)];
     ageField.value = age;
     favFoodField.value = favoriteFood;
-}
-
-function createCharacter(){
-    
-    characterName = nameField.value;
-    age = ageField.value;
-    favoriteFood = favFoodField.value;
 
     if (Math.round(Math.random()) === 1){
         isSuperhero = true;
@@ -36,6 +31,15 @@ function createCharacter(){
     else{
         isSuperhero = false;
     }
+
+    superpowersButton.checked = isSuperhero;
+}
+
+function createCharacter(){
+
+    characterName = nameField.value;
+    age = ageField.value;
+    favoriteFood = favFoodField.value;
 
     let description = `Meet the ${age} year old, ${favoriteFood} loving, ${characterName}!`;
 
