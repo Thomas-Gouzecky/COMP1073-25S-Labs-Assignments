@@ -10,19 +10,28 @@ body{
     grid-template-columns: auto auto;
     gap: 10px;
     align-items: center;
-    width: 80%;
-    margin: 5vw auto;
+    width: 50%;
+    margin: 5vh auto;
+    padding: 2em;
+    box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.75);
 }
 
 .form button {
     grid-column: span 2; 
     padding: 1em;
-    margin: 10px 30% 0;
-    font-size: 2rem;
+    margin: 10px 10% 0;
+    font-size: 1.5rem;
     text-align: center;
     font-weight: bold;
+    background-color: rgb(100, 100, 100);
+    color: white;
+    border: 2px solid white;
+    transition: all 0.2s ease-in-out;
 }
 
 .form button:hover{
     cursor: pointer;
+    color: rgb(100, 100, 100);
+    background-color: white;
+    border: 2px solid grey;
 }
