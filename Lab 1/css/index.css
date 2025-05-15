@@ -1,1 +1,28 @@
+body{
+    margin: 0;
+    font-size: large;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+}
 
+.form {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    align-items: center;
+    width: 80%;
+    margin: 5vw auto;
+}
+
+.form button {
+    grid-column: span 2; 
+    padding: 1em;
+    margin: 10px 30% 0;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.form button:hover{
+    cursor: pointer;
+}
