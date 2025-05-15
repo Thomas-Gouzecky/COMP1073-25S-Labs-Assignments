@@ -20,7 +20,11 @@ favFoodField.placeholder = favoriteFood;
 function randomizeAttr(){
     age = Math.ceil(Math.random()*100);
     favoriteFood = listOfFoods[Math.floor(Math.random() * listOfFoods.length)];
+    ageField.placeholder = age;
+    favFoodField.placeholder = favoriteFood;
+}
 
+function createCharacter(){
     if (Math.round(Math.random()) === 1){
         isSuperhero = true;
     }
@@ -28,10 +32,7 @@ function randomizeAttr(){
         isSuperhero = false;
     }
 
-    ageField.placeholder = age;
-    favFoodField.placeholder = favoriteFood;
+    heroDescription.textContent = `Meet the ${favoriteFood} loving, ${characterName}! `
 }
-
-
 
 randomButton.addEventListener('click', randomizeAttr);
