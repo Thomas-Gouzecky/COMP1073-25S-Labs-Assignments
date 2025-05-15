@@ -16,3 +16,14 @@ let createButton = document.querySelector('button');
 nameField.placeholder = characterName;
 ageField.placeholder = age;
 favFoodField.placeholder = favoriteFood;
+
+function randomizeAttr(){
+    age = Math.ceil(Math.random()*100);
+    favoriteFood = listOfFoods[Math.floor(Math.random() * listOfFoods.length)];
+    ageField.placeholder = age;
+    favFoodField.placeholder = favoriteFood;
+}
+
+
+
+randomButton.addEventListener('click', randomizeAttr);
