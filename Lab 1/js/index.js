@@ -20,6 +20,14 @@ favFoodField.placeholder = favoriteFood;
 function randomizeAttr(){
     age = Math.ceil(Math.random()*100);
     favoriteFood = listOfFoods[Math.floor(Math.random() * listOfFoods.length)];
+
+    if (Math.round(Math.random()) === 1){
+        isSuperhero = true;
+    }
+    else{
+        isSuperhero = false;
+    }
+
     ageField.placeholder = age;
     favFoodField.placeholder = favoriteFood;
 }
