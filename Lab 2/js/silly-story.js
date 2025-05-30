@@ -59,9 +59,13 @@ function result() {
 	/* STEP 11: If the metric radio button has been checked, we need to convert the temperature and mass numbers in the story */
 	if (document.getElementById("metric").checked) {
 		// STEP 11a: Create a variable called weight and convert the 300lbs to kgs (1lb = 0.453592kg)
+		let weight = Math.round(300 * 0.453592);
 		// STEP 11b: Replace the string 300 pounds with the updated weight in kg
+		newStory = newStory.replace(/300 pounds/g, weight + " kilograms");
 		// STEP 12a: Create a variable called temp and convert °F to °C ... the formula for conversion is °C = (°F - 32) x 5/9
+		let temp = Math.round(((94 - 32) * 5) / 9);
 		// STEP 12b: Replace the string '94 fahrenheit' with the updated temperature in °C
+		newStory = newStory.replace(/94 fahrenheit/g, temp + " celsius");
 	}
 	/* STEP 13: Make the textContent property of the story variable (which references the paragraph) equal to newStory */
 
