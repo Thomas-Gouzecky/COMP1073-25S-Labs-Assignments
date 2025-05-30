@@ -68,6 +68,7 @@ function result() {
 		newStory = newStory.replace(/94 fahrenheit/g, temp + " celsius");
 	}
 	/* STEP 13: Make the textContent property of the story variable (which references the paragraph) equal to newStory */
+	story.textContent = newStory;
 
 	// The following line makes the paragraph visible
 	story.style.visibility = "visible";
