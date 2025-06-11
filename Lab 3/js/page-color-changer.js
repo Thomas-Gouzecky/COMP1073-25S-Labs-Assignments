@@ -1,5 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
 	const slider = document.querySelectorAll("[type='range']");
+
+	slider.forEach(function (element) {
+		element.addEventListener("input", function () {
+			changeBackgroundColor();
+		});
+	});
 });
 
 function changeBackgroundColor() {
