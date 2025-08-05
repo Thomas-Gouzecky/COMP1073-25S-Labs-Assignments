@@ -22,19 +22,69 @@ hueSlider.addEventListener(
 	"change",
 	function () {
 		var newHue = this.value * 1000;
-		updateScreenColor(newHue);
-		var commands =
-			'{ "hue" : ' + newHue + ', "sat" : 254, "bri" : 254, "on" : true }';
+		let newSat = parseInt(satSlider.value);
+		let newBri = parseInt(briSlider.value);
+
+		updateScreenColor(newHue, newSat, newBri);
+
+		var commands = {
+			on: true,
+			hue: newHue,
+			sat: parseInt(satSlider.value),
+			bri: parseInt(briSlider.value),
+		};
 		// STEP 9b: Invoke the completed updateLight() function when the hueSlider value changes
 		updateLight(commands);
 	},
 	false
 );
 
+satSlider.addEventListener(
+	"change",
+	function () {
+		let newHue = parseInt(hueSlider.value) * 1000;
+		var newSat = parseInt(this.value);
+		let newBri = parseInt(briSlider.value);
+
+		updateScreenColor(newHue, newSat, newBri);
+		var commands = {
+			on: true,
+			hue: parseInt(hueSlider.value) * 1000,
+			sat: newSat,
+			bri: parseInt(briSlider.value),
+		};
+		updateLight(commands);
+	},
+	false
+);
+
+briSlider.addEventListener(
+	"change",
+	function () {
+		let newHue = parseInt(hueSlider.value) * 1000;
+		let newSat = parseInt(satSlider.value);
+		var newBri = parseInt(this.value);
+
+		updateScreenColor(newHue, newSat, newBri);
+
+		var commands = {
+			on: true,
+			hue: parseInt(hueSlider.value) * 1000,
+			sat: parseInt(satSlider.value),
+			bri: newBri,
+		};
+		updateLight(commands);
+	},
+	false
+);
+
 // Function that changes the page color based on the value of the slider
-function updateScreenColor(newHue) {
+function updateScreenColor(newHue, newSat, newBri) {
 	cssHue = Math.round((newHue / 48000) * 240); // "Both 0 and 65535 are red, 25500 is green and 46920 is blue." (https://developers.meethue.com/develop/hue-api/lights-api/)
-	bgCSSValue = "hsl(" + cssHue + "deg, 100%, 50%)";
+	cssSat = Math.round((newSat / 254) * 100); // Convert saturation to percentage
+	cssBrightness = Math.round((newBri / 254) * 100); // Convert brightness to percentage
+
+	bgCSSValue = `hsl(${cssHue}deg, ${cssSat}%, ${cssBrightness}%)`;
 	console.log(bgCSSValue);
 	html.style.backgroundColor = bgCSSValue;
 }
@@ -43,7 +93,7 @@ function updateScreenColor(newHue) {
 function updateLight(bodyData) {
 	fetch(endpoint, {
 		method: method,
-		body: bodyData,
+		body: JSON.stringify(JSON.parse(bodyData)), // Convert the bodyData to a JSON string
 	})
 		.then((response) => response.json()) // Parse the response to JSON
 		.then((data) => {
