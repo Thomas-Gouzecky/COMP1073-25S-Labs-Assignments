@@ -8,6 +8,24 @@
 	</head>
 	<body>
 		<h1>Philips Hue Lab</h1>
-		<input type="range" id="hue" min="0" max="47" />
+
+		<div class="container">
+			<button id="toggle">Toggle Lights</button>
+
+			<div class="slider">
+				<label for="hue">Hue</label>
+				<input type="range" id="hue" min="0" max="47" />
+			</div>
+
+			<div class="slider">
+				<label for="saturation">Saturation</label>
+				<input type="range" id="saturation" min="0" max="255" />
+			</div>
+
+			<div class="slider">
+				<label for="brightness">Brightness</label>
+				<input type="range" id="brightness" min="0" max="255" />
+			</div>
+		</div>
 	</body>
 </html>
