@@ -15,7 +15,7 @@ const satSlider = document.getElementById("saturation");
 const briSlider = document.getElementById("brightness");
 const toggleButton = document.getElementById("toggle");
 
-let lightOn = false; // Variable to track the light state
+let lightOn = true; // Variable to track the light state
 
 // STEP 9a: Examine the below event listener for the range slider
 hueSlider.addEventListener(
@@ -28,7 +28,7 @@ hueSlider.addEventListener(
 		updateScreenColor(newHue, newSat, newBri);
 
 		var commands = {
-			on: true,
+			on: !lightOn,
 			hue: newHue,
 			sat: parseInt(satSlider.value),
 			bri: parseInt(briSlider.value),
@@ -48,7 +48,7 @@ satSlider.addEventListener(
 
 		updateScreenColor(newHue, newSat, newBri);
 		var commands = {
-			on: true,
+			on: !lightOn,
 			hue: parseInt(hueSlider.value) * 1000,
 			sat: newSat,
 			bri: parseInt(briSlider.value),
@@ -68,7 +68,7 @@ briSlider.addEventListener(
 		updateScreenColor(newHue, newSat, newBri);
 
 		var commands = {
-			on: true,
+			on: !lightOn,
 			hue: parseInt(hueSlider.value) * 1000,
 			sat: parseInt(satSlider.value),
 			bri: newBri,
@@ -90,7 +90,7 @@ toggleButton.addEventListener("click", function () {
 	updateScreenColor(newHue, newSat, newBri);
 
 	updateLight({
-		on: lightOn,
+		on: !lightOn,
 	});
 });
 
@@ -107,9 +107,10 @@ function updateScreenColor(newHue, newSat, newBri) {
 
 // STEP 8: Function to update the hue light by passing JSON to the bridge
 function updateLight(bodyData) {
+	console.log("Sending to Hue API: ", endpoint, bodyData);
 	fetch(endpoint, {
 		method: method,
-		body: JSON.stringify(JSON.parse(bodyData)), // Convert the bodyData to a JSON string
+		body: JSON.stringify(bodyData), // Convert the bodyData to a JSON string
 	})
 		.then((response) => response.json()) // Parse the response to JSON
 		.then((data) => {
