@@ -78,11 +78,27 @@ briSlider.addEventListener(
 	false
 );
 
+toggleButton.addEventListener("click", function () {
+	lightOn = !lightOn;
+	log = lightOn ? "Light is Off" : "Light is On";
+	console.log(log);
+
+	let newHue = parseInt(hueSlider.value) * 1000;
+	let newSat = parseInt(satSlider.value);
+	var newBri = lightOn ? 0 : parseInt(briSlider.value);
+
+	updateScreenColor(newHue, newSat, newBri);
+
+	updateLight({
+		on: lightOn,
+	});
+});
+
 // Function that changes the page color based on the value of the slider
 function updateScreenColor(newHue, newSat, newBri) {
 	cssHue = Math.round((newHue / 48000) * 240); // "Both 0 and 65535 are red, 25500 is green and 46920 is blue." (https://developers.meethue.com/develop/hue-api/lights-api/)
 	cssSat = Math.round((newSat / 254) * 100); // Convert saturation to percentage
-	cssBrightness = Math.round((newBri / 254) * 100); // Convert brightness to percentage
+	cssBrightness = lightOn ? 0 : Math.round((newBri / 254) * 100); // Convert brightness to percentage
 
 	bgCSSValue = `hsl(${cssHue}deg, ${cssSat}%, ${cssBrightness}%)`;
 	console.log(bgCSSValue);
