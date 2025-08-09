@@ -1,10 +1,10 @@
-class Smoothie {
-	constructor(options) {
-		this.customer = options.customer;
-		this.size = options.size;
-		this.base = options.base;
-		this.fruits = options.fruits.slice();
-		this.boosters = options.fruits.slice();
+export class Smoothie {
+	constructor(customerName, size, base, fruits, boosters) {
+		this.customerName = customerName;
+		this.size = size;
+		this.base = base;
+		this.fruits = fruits;
+		this.boosters = boosters;
 	}
 
 	fruitEmojis() {
