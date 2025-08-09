@@ -3,6 +3,9 @@ import { Smoothie } from "./smoothie.js";
 // variables needed
 const orderSmoothie = document.getElementById("orderBtn");
 
+const resetSmoothie = document.getElementById("resetBtn");
+
+// modal
 const modalOverlay = document.getElementById("modalOverlay");
 const modalWindow = document.getElementById("modalWindow");
 const modalContent = document.getElementById("modalContent");
@@ -30,14 +33,10 @@ orderSmoothie.addEventListener("click", () => {
 		boosters
 	);
 
-	const capitalizedSize =
-		smoothieOrder.size.charAt(0).toUpperCase() +
-		smoothieOrder.size.slice(1);
-
 	// text to fill the modal
 	const smoothieDisplayText = `
     <p><strong>Customer: </strong> ${smoothieOrder.customerName}</p>
-    <p><strong>Size: </strong> ${capitalizedSize}</p>
+    <p><strong>Size: </strong> ${smoothieOrder.size}</p>
     <p><strong>Base: </strong> ${smoothieOrder.base}</p>
     <p><strong>Fruits:</strong> ${smoothieOrder.fruits.join(", ") || "None"}</p>
     <p><strong>Boosters:</strong> ${
@@ -92,3 +91,19 @@ function closeModal() {
 
 modalCloseBtn.addEventListener("click", closeModal);
 modalOverlay.addEventListener("click", closeModal);
+
+resetSmoothie.addEventListener("click", () => {
+	document.getElementById("customerName").value = "";
+	document.getElementById("size").value = "Medium";
+	document.querySelectorAll("label").forEach((label) => {
+		let input = label.querySelector("input");
+		if (input != null) {
+			input.checked = false;
+			label.classList.remove("checked");
+			if (input.value === "Milk" || input.value === "Banana") {
+				input.checked = true;
+				label.classList.add("checked");
+			}
+		}
+	});
+});
