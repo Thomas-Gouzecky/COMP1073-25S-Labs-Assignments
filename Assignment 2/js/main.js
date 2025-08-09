@@ -1,6 +1,12 @@
 import { Smoothie } from "./smoothie.js";
 
+// variables needed
 const orderSmoothie = document.getElementById("orderBtn");
+
+const modalOverlay = document.getElementById("modalOverlay");
+const modalWindow = document.getElementById("modalWindow");
+const modalContent = document.getElementById("modalContent");
+const modalCloseBtn = document.getElementById("modalCloseBtn");
 
 // creates the smoothie object when the order smoothie button is clicked
 orderSmoothie.addEventListener("click", () => {
@@ -24,7 +30,23 @@ orderSmoothie.addEventListener("click", () => {
 		boosters
 	);
 
-	console.log(smoothieOrder);
+	const capitalizedSize =
+		smoothieOrder.size.charAt(0).toUpperCase() +
+		smoothieOrder.size.slice(1);
+
+	// text to fill the modal
+	const smoothieDisplayText = `
+    <p><strong>Customer: </strong> ${smoothieOrder.customerName}</p>
+    <p><strong>Size: </strong> ${capitalizedSize}</p>
+    <p><strong>Base: </strong> ${smoothieOrder.base}</p>
+    <p><strong>Fruits:</strong> ${smoothieOrder.fruits.join(", ") || "None"}</p>
+    <p><strong>Boosters:</strong> ${
+		smoothieOrder.boosters.join(", ") || "None"
+	}</p>
+    `;
+
+	// display the modal
+	openModal(smoothieDisplayText);
 });
 
 // dynamically assign classes to labels to visually show what is clicked
@@ -55,3 +77,18 @@ document.querySelectorAll("label").forEach((label) => {
 		});
 	}
 });
+
+// function thats called when the user creates a smoothie
+function openModal(smoothieDisplayText) {
+	modalContent.innerHTML = smoothieDisplayText;
+	modalOverlay.classList.remove("hidden");
+	modalWindow.classList.remove("hidden");
+}
+
+function closeModal() {
+	modalOverlay.classList.add("hidden");
+	modalWindow.classList.add("hidden");
+}
+
+modalCloseBtn.addEventListener("click", closeModal);
+modalOverlay.addEventListener("click", closeModal);
