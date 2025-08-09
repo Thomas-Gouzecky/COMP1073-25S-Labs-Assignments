@@ -12,167 +12,174 @@
 		<script type="module" src="js/main.js" defer></script>
 	</head>
 	<body>
-		<div role="application" aria-label="Smoothie Machine App">
+		<header>
 			<div>
-				<header>
-					<div>
-						<h1>The Smoothie Machine!</h1>
-					</div>
-				</header>
-
-				<form
-					onsubmit="return false;"
-					id="orderForm"
-					aria-labelledby="orderHeading"
-				>
-					<h3 id="orderHeading">Create a Smoothie</h3>
-
-					<div>
-						<label for="customerName">Your Name</label>
-						<input
-							type="text"
-							id="customerName"
-							placeholder="e.g. James"
-							required
-						/>
-					</div>
-
-					<div>
-						<label for="size">Size</label>
-						<select id="size">
-							<option value="small">Small (12oz)</option>
-							<option value="medium" selected>
-								Medium (16oz)
-							</option>
-							<option value="large">Large (24oz)</option>
-						</select>
-					</div>
-
-					<fieldset>
-						<legend>Base (Choose One)</legend>
-						<div role="radiogroup" aria-label="Smoothie base">
-							<label class="option checked"
-								><input
-									type="radio"
-									name="base"
-									value="Milk"
-									hidden
-									checked
-								/>Milk</label
-							>
-							<label class="option"
-								><input
-									type="radio"
-									name="base"
-									value="Almond Milk"
-									hidden
-								/>Almond Milk</label
-							>
-							<label class="option"
-								><input
-									type="radio"
-									name="base"
-									value="Yogurt"
-									hidden
-								/>Yogurt</label
-							>
-							<label class="option"
-								><input
-									type="radio"
-									name="base"
-									value="Water"
-									hidden
-								/>Water</label
-							>
-						</div>
-					</fieldset>
-
-					<fieldset>
-						<legend>Fruits (Choose Any)</legend>
-						<div>
-							<label class="option checked"
-								><input
-									type="checkbox"
-									name="fruit"
-									value="Banana"
-									hidden
-									checked
-								/>Banana</label
-							>
-							<label class="option"
-								><input
-									type="checkbox"
-									name="fruit"
-									value="Strawberry"
-									hidden
-								/>Strawberry</label
-							>
-							<label class="option"
-								><input
-									type="checkbox"
-									name="fruit"
-									value="Blueberry"
-									hidden
-								/>Blueberry</label
-							>
-							<label class="option"
-								><input
-									type="checkbox"
-									name="fruit"
-									value="Mango"
-									hidden
-								/>Mango</label
-							>
-							<label class="option"
-								><input
-									type="checkbox"
-									name="fruit"
-									value="Pineapple"
-									hidden
-								/>Pineapple</label
-							>
-						</div>
-					</fieldset>
-
-					<fieldset>
-						<legend>Boosters & Sweeteners</legend>
-						<div>
-							<label class="option"
-								><input
-									type="checkbox"
-									name="booster"
-									value="Protein Powder"
-									hidden
-								/>Protein</label
-							>
-							<label class="option"
-								><input
-									type="checkbox"
-									name="booster"
-									value="Chia Seeds"
-									hidden
-								/>Chia Seeds</label
-							>
-							<label class="option"
-								><input
-									type="checkbox"
-									name="booster"
-									value="Honey"
-									hidden
-								/>Honey</label
-							>
-						</div>
-					</fieldset>
-
-					<div>
-						<button id="orderBtn" type="button">
-							Order Smoothie
-						</button>
-						<button id="resetBtn" type="button">Reset</button>
-					</div>
-				</form>
-				<p id="orderSummary"></p>
+				<h1>The Smoothie Machine!</h1>
 			</div>
+		</header>
+
+		<form
+			onsubmit="return false;"
+			id="orderForm"
+			aria-labelledby="orderHeading"
+		>
+			<h3 id="orderHeading">Create a Smoothie</h3>
+
+			<div>
+				<label for="customerName">Your Name</label>
+				<input
+					type="text"
+					id="customerName"
+					placeholder="e.g. James"
+					required
+				/>
+			</div>
+
+			<div>
+				<label for="size">Size</label>
+				<select id="size">
+					<option value="small">Small (12oz)</option>
+					<option value="medium" selected>Medium (16oz)</option>
+					<option value="large">Large (24oz)</option>
+				</select>
+			</div>
+
+			<fieldset>
+				<legend>Base (Choose One)</legend>
+				<div role="radiogroup" aria-label="Smoothie base">
+					<label class="option checked"
+						><input
+							type="radio"
+							name="base"
+							value="Milk"
+							hidden
+							checked
+						/>Milk</label
+					>
+					<label class="option"
+						><input
+							type="radio"
+							name="base"
+							value="Almond Milk"
+							hidden
+						/>Almond Milk</label
+					>
+					<label class="option"
+						><input
+							type="radio"
+							name="base"
+							value="Yogurt"
+							hidden
+						/>Yogurt</label
+					>
+					<label class="option"
+						><input
+							type="radio"
+							name="base"
+							value="Water"
+							hidden
+						/>Water</label
+					>
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<legend>Fruits (Choose Any)</legend>
+				<div>
+					<label class="option checked"
+						><input
+							type="checkbox"
+							name="fruit"
+							value="Banana"
+							hidden
+							checked
+						/>Banana</label
+					>
+					<label class="option"
+						><input
+							type="checkbox"
+							name="fruit"
+							value="Strawberry"
+							hidden
+						/>Strawberry</label
+					>
+					<label class="option"
+						><input
+							type="checkbox"
+							name="fruit"
+							value="Blueberry"
+							hidden
+						/>Blueberry</label
+					>
+					<label class="option"
+						><input
+							type="checkbox"
+							name="fruit"
+							value="Mango"
+							hidden
+						/>Mango</label
+					>
+					<label class="option"
+						><input
+							type="checkbox"
+							name="fruit"
+							value="Pineapple"
+							hidden
+						/>Pineapple</label
+					>
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<legend>Boosters & Sweeteners</legend>
+				<div>
+					<label class="option"
+						><input
+							type="checkbox"
+							name="booster"
+							value="Protein Powder"
+							hidden
+						/>Protein</label
+					>
+					<label class="option"
+						><input
+							type="checkbox"
+							name="booster"
+							value="Chia Seeds"
+							hidden
+						/>Chia Seeds</label
+					>
+					<label class="option"
+						><input
+							type="checkbox"
+							name="booster"
+							value="Honey"
+							hidden
+						/>Honey</label
+					>
+				</div>
+			</fieldset>
+
+			<div>
+				<button id="orderBtn" type="button">Order Smoothie</button>
+				<button id="resetBtn" type="button">Reset</button>
+			</div>
+		</form>
+
+		<!-- Modal background overlay -->
+		<div id="modalOverlay" class="modal-overlay hidden"></div>
+
+		<!-- Modal window -->
+		<div
+			id="modalWindow"
+			class="modal-window hidden"
+			role="dialog"
+			aria-modal="true"
+			aria-labelledby="modalTitle"
+		>
+			<h2 id="modalTitle">Your Smoothie Order</h2>
+			<div id="modalContent"></div>
+			<button id="modalCloseBtn" aria-label="Close modal">Close</button>
 		</div>
 	</body>
 </html>
