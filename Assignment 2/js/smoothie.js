@@ -8,10 +8,14 @@ export class Smoothie {
 	}
 
 	fruitEmojis() {
-		if (this.fruits.inclues("Mango")) return "🥭";
-		if (this.fruits.includes("Strawberry")) return "🍓";
-		if (this.fruits.includes("Banana")) return "🍌";
-		if (this.fruits.includes("Blueberry")) return "🫐";
-		if (this.fruits.includes("Pineapple")) return "🍍";
+		let emojis = [];
+
+		if (this.fruits.includes("Mango")) emojis.push("🥭 Mango 🥭");
+		if (this.fruits.includes("Strawberry")) emojis.push("🍓 Strawberry 🍓");
+		if (this.fruits.includes("Banana")) emojis.push("🍌 Banana 🍌");
+		if (this.fruits.includes("Blueberry")) emojis.push("🫐 Grape 🫐");
+		if (this.fruits.includes("Pineapple")) emojis.push("🍍 Pineapple 🍍");
+
+		return emojis.join(", ");
 	}
 }

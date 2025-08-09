@@ -38,7 +38,7 @@ orderSmoothie.addEventListener("click", () => {
     <p><strong>Customer: </strong> ${smoothieOrder.customerName}</p>
     <p><strong>Size: </strong> ${smoothieOrder.size}</p>
     <p><strong>Base: </strong> ${smoothieOrder.base}</p>
-    <p><strong>Fruits:</strong> ${smoothieOrder.fruits.join(", ") || "None"}</p>
+    <p><strong>Fruits:</strong> ${smoothieOrder.fruitEmojis() || "None"}</p>
     <p><strong>Boosters:</strong> ${
 		smoothieOrder.boosters.join(", ") || "None"
 	}</p>
@@ -92,6 +92,7 @@ function closeModal() {
 modalCloseBtn.addEventListener("click", closeModal);
 modalOverlay.addEventListener("click", closeModal);
 
+// reset button
 resetSmoothie.addEventListener("click", () => {
 	document.getElementById("customerName").value = "";
 	document.getElementById("size").value = "Medium";
