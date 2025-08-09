@@ -11,6 +11,10 @@ const modalWindow = document.getElementById("modalWindow");
 const modalContent = document.getElementById("modalContent");
 const modalCloseBtn = document.getElementById("modalCloseBtn");
 
+// modal header stuff for dragging it around
+const modal = document.querySelector(".modal-window");
+const header = document.getElementById("modalWindowBar");
+
 // creates the smoothie object when the order smoothie button is clicked
 orderSmoothie.addEventListener("click", () => {
 	let customerName = document.getElementById("customerName").value;
@@ -35,7 +39,7 @@ orderSmoothie.addEventListener("click", () => {
 
 	// text to fill the modal
 	const smoothieDisplayText = `
-    <p><strong>Customer: </strong> ${smoothieOrder.customerName}</p>
+    <p><strong>Customer: </strong> ${smoothieOrder.customerName || "Uknown"}</p>
     <p><strong>Size: </strong> ${smoothieOrder.size}</p>
     <p><strong>Base: </strong> ${smoothieOrder.base}</p>
     <p><strong>Fruits:</strong> ${smoothieOrder.fruitEmojis() || "None"}</p>
@@ -107,4 +111,29 @@ resetSmoothie.addEventListener("click", () => {
 			}
 		}
 	});
+});
+
+let isDragging = false;
+let offsetX, offsetY;
+
+// checks if the user clicked while hovering over the header
+header.addEventListener("mousedown", (e) => {
+	isDragging = true;
+	// Get mouse offset inside modal
+	offsetX = e.clientX - modal.offsetLeft;
+	offsetY = e.clientY - modal.offsetTop;
+});
+
+// listens for whenever the mouse moves
+document.addEventListener("mousemove", (e) => {
+	// if it moves, move the modal
+	if (isDragging) {
+		modal.style.left = e.clientX - offsetX + "px";
+		modal.style.top = e.clientY - offsetY + "px";
+	}
+});
+
+// listens for when the user unclicks
+document.addEventListener("mouseup", () => {
+	isDragging = false;
 });
