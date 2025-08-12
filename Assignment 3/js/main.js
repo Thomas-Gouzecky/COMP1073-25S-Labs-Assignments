@@ -33,4 +33,5 @@ infoBtn.addEventListener("click", async () => {
 	} catch (err) {
 		pokedataDiv.innerHTML = `<p style="color:red">${err.message}</p>`;
 	}
+	pokedataDiv.classList.add("card");
 });
