@@ -17,17 +17,23 @@ infoBtn.addEventListener("click", async () => {
 		}
 		const pokemonData = await response.json();
 
-		// Basic output (Getting Started)
 		let html = `
           <h2>${pokemonData.name.toUpperCase()}</h2>
           <img src="${pokemonData.sprites.front_default}" alt="${pokemonData.name}">
         `;
 
-		// Expanded output (more than the example)
-		html += `<p>Height: ${pokemonData.height}</p>`;
-		html += `<p>Weight: ${pokemonData.weight}</p>`;
-		html += `<p>Types: ${pokemonData.types.map((t) => t.type.name).join(", ")}</p>`;
-		html += `<p>Abilities: ${pokemonData.abilities.map((a) => a.ability.name).join(", ")}</p>`;
+		// lbs
+		const pokemonWeight = (pokemonData.weight * 0.220462).toFixed(2);
+
+		// feet
+		const totalInches = pokemonData.height * 3.937;
+		const feet = Math.floor(totalInches / 12);
+		const inches = Math.round(totalInches % 12);
+
+		html += `<p>Height: ${feet}' ${inches}" </p>`;
+		html += `<p>Weight: ${pokemonWeight}lbs</p>`;
+		html += `<p>Types: ${pokemonData.types.map((t) => capitalize(t.type.name)).join(" / ")}</p>`;
+		html += `<p>Abilities: ${pokemonData.abilities.map((a) => capitalize(a.ability.name)).join(" / ")}</p>`;
 
 		pokedataDiv.innerHTML = html;
 	} catch (err) {
@@ -35,3 +41,7 @@ infoBtn.addEventListener("click", async () => {
 	}
 	pokedataDiv.classList.add("card");
 });
+
+function capitalize(word) {
+	return word.charAt(0).toUpperCase() + word.slice(1);
+}
