@@ -36,9 +36,12 @@ async function fetchPokemon(name) {
 }
 
 function displayPokemonData(pokemonData) {
+	const normalSprite = pokemonData.sprites.front_default;
+	const shinySprite = pokemonData.sprites.front_shiny;
+
 	let html = `
           <h2>${pokemonData.name.toUpperCase()}</h2>
-          <img src="${pokemonData.sprites.front_default}" alt="${pokemonData.name}">
+          <img id="pokemonImage" src="${normalSprite}" alt="${pokemonData.name}">
         `;
 
 	// lbs
@@ -55,8 +58,33 @@ function displayPokemonData(pokemonData) {
 	html += `<p>Types: ${pokemonData.types.map((t) => capitalize(t.type.name)).join(" / ")}</p>`;
 	html += `<p>Abilities: ${pokemonData.abilities.map((a) => capitalize(a.ability.name)).join(" / ")}</p>`;
 
+	// add the button to change the shiny sprite
+	html += `<button id="toggleShinyBtn">Show Shiny</button>`;
+
 	// displaying the content
 	pokedataDiv.innerHTML = html;
+
+	// add shiny toggle
+
+	// variables
+	const toggleBtn = document.getElementById("toggleShinyBtn");
+	const pokeImg = document.getElementById("pokemonImage");
+
+	let isShiny = false;
+
+	toggleBtn.addEventListener("click", () => {
+		if (isShiny) {
+			pokeImg.src = normalSprite;
+			toggleBtn.textContent = "Show Shiny";
+		} else {
+			// if the shiny sprite exists (not null)
+			if (shinySprite) {
+				pokeImg.src = shinySprite;
+				toggleBtn.textContent = "Show Normal";
+			}
+		}
+		isShiny = !isShiny;
+	});
 }
 
 // Save pokemon to localStorage API
