@@ -72,15 +72,15 @@ function savePokemon(pokemonData) {
 }
 
 async function displayRecentPokemon() {
-	const recentContainer = document.querySelector("aside");
+	const recentContainer = document.querySelector(".recent-container");
 	let saved = JSON.parse(localStorage.getItem("recentPokemon") || "[]");
 
 	if (saved.length === 0) {
-		recentContainer.innerHTML = `<h1>Recent Pokémon</h1><p>No Pokémon saved yet.</p>`;
+		recentContainer.innerHTML = `<p>No Pokémon saved yet.</p>`;
 		return;
 	}
 
-	let html = `<h1>Recent Pokémon</h1><div  ">`;
+	let html = ``;
 
 	// shows each saved pokemon
 	saved
@@ -88,13 +88,12 @@ async function displayRecentPokemon() {
 		.reverse()
 		.forEach((p) => {
 			html += `
-      <div onclick="fetchPokemon('${p.name}')">
+      <div class="small-card" onclick="fetchPokemon('${p.name}')">
         <img src="${p.image}" alt="${p.name}">
-        <p>${capitalize(p.name)}</p>
+        <p class="pokemonName">${capitalize(p.name)}</p>
       </div>
     `;
 		});
 
-	html += "</div>";
 	recentContainer.innerHTML = html;
 }
