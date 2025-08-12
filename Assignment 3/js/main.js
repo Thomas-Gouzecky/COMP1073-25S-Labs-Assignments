@@ -8,6 +8,7 @@ const baseURL = "https://pokeapi.co/api/v2/pokemon/";
 
 infoBtn.addEventListener("click", () => fetchPokemon(pokemonNameInput.value));
 
+// everytime the window loads, load all the recent pokemon
 window.onload = () => {
 	displayRecentPokemon();
 };
@@ -16,11 +17,13 @@ function capitalize(word) {
 	return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
+// get the pokemon
 async function fetchPokemon(name) {
 	const url = baseURL + name.toLowerCase();
 	try {
 		const response = await fetch(url);
 		if (!response.ok) throw new Error("Pokemon not Found");
+		// gets the json data if the response is ok (200)
 		const pokemonData = await response.json();
 
 		displayPokemonData(pokemonData);
@@ -46,14 +49,17 @@ function displayPokemonData(pokemonData) {
 	const feet = Math.floor(totalInches / 12);
 	const inches = Math.round(totalInches % 12);
 
+	// adding content to display for the user
 	html += `<p>Height: ${feet}' ${inches}" </p>`;
 	html += `<p>Weight: ${pokemonWeight}lbs</p>`;
 	html += `<p>Types: ${pokemonData.types.map((t) => capitalize(t.type.name)).join(" / ")}</p>`;
 	html += `<p>Abilities: ${pokemonData.abilities.map((a) => capitalize(a.ability.name)).join(" / ")}</p>`;
 
+	// displaying the content
 	pokedataDiv.innerHTML = html;
 }
 
+// Save pokemon to localStorage API
 function savePokemon(pokemonData) {
 	// Load saved array or create empty
 	let saved = JSON.parse(localStorage.getItem("recentPokemon") || "[]");
@@ -71,8 +77,11 @@ function savePokemon(pokemonData) {
 	displayRecentPokemon();
 }
 
+// Show the recent pokemon viewed
 async function displayRecentPokemon() {
 	const recentContainer = document.querySelector(".recent-container");
+
+	// gets the json for all the recent pokemon saved in localStorage -> in an array
 	let saved = JSON.parse(localStorage.getItem("recentPokemon") || "[]");
 
 	if (saved.length === 0) {
