@@ -23,7 +23,6 @@ body {
 
 main {
 	flex: 1;
-	padding: 2rem 1rem;
 	display: flex;
 	justify-content: space-evenly;
 	width: 80%;
@@ -146,8 +145,6 @@ img {
 }
 
 .small-card {
-	flex: 0 0 calc(50% - 0.5rem); /* each card takes about half minus gap */
-	/* width: 50%; */
 	max-width: 100px;
 	padding: 1rem 1.5rem 0.5rem;
 	border-radius: 20px;
@@ -158,15 +155,16 @@ img {
 	transition: box-shadow 0.3s ease;
 	text-align: center;
 	cursor: pointer;
-	margin-bottom: 1rem;
+	margin-bottom: 0.5rem;
 }
 
 .recent-container {
-	width: 100%;
+	margin: auto;
+	width: 90%;
+	max-width: 100%;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: flex-start;
-	gap: 1rem;
+	justify-content: space-evenly;
 }
 
 aside > h1.card {
