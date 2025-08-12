@@ -1,27 +1,39 @@
 :root {
 	--pokemonYellow: #ffcb05; /* Pokémon yellow */
 	--pokemonBlue: #2a75bb; /* Pokémon blue */
+	--backgroundLight: #f9f9f9;
+	--textDark: #222;
+	--textSecondary: #555;
 }
 
 html,
 body {
 	height: 100%;
+	background-color: var(--backgroundLight);
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	color: var(--textDark);
+	margin: 0;
 }
 
 body {
 	display: flex;
 	flex-direction: column;
+	min-height: 100vh;
 }
 
 main {
 	flex: 1;
+	padding: 2rem 1rem;
 }
 
 footer {
-	border-top: 1px solid black;
+	border-top: 1px solid #ccc;
 	text-align: center;
-	padding: 35px;
+	padding: 20px;
 	margin: 0 2vw;
+	font-size: 0.9rem;
+	color: var(--textSecondary);
+	background-color: var(--backgroundLight);
 }
 
 .card {
@@ -29,18 +41,25 @@ footer {
 	width: 90%;
 	max-width: 500px;
 	padding: 2rem;
-	border-radius: 16px;
-	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	border-radius: 20px;
+	background: white;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
 	display: flex;
 	flex-direction: column;
+	transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
 }
 
 h1,
 #pokemonData h2 {
 	text-align: center;
 	font-family: "Press Start 2P", cursive;
-	color: #ffcb05;
-	text-shadow: 2px 2px #2a75bb;
+	color: var(--pokemonYellow);
+	text-shadow: 2px 2px var(--pokemonBlue);
+	margin-bottom: 1.5rem;
 }
 
 input {
@@ -51,6 +70,7 @@ input {
 	font-size: 1rem;
 	outline: none;
 	transition: box-shadow 0.2s ease, transform 0.2s ease;
+	background: #fff;
 }
 
 input:focus {
@@ -80,10 +100,12 @@ button:hover {
 	margin: 2rem auto;
 	max-width: 500px;
 	text-align: center;
+	color: var(--textDark);
 }
 
 #pokemonData h2 {
 	font-size: 2.5rem;
+	margin-bottom: 1rem;
 }
 
 #pokemonData img {
@@ -93,12 +115,12 @@ button:hover {
 	image-rendering: pixelated;
 	padding: 2rem;
 	border-radius: 16px;
-	box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.3);
+	box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.2);
 	margin-bottom: 1rem;
 }
 
 #pokemonData p {
 	font-size: 1rem;
-	color: #333;
+	color: var(--textSecondary);
 	margin: 0.4rem 0;
 }
