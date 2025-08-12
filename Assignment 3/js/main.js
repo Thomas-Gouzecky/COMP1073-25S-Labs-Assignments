@@ -20,20 +20,14 @@ infoBtn.addEventListener("click", async () => {
 		// Basic output (Getting Started)
 		let html = `
           <h2>${pokemonData.name.toUpperCase()}</h2>
-          <img src="${pokemonData.sprites.front_default}" alt="${
-			pokemonData.name
-		}">
+          <img src="${pokemonData.sprites.front_default}" alt="${pokemonData.name}">
         `;
 
 		// Expanded output (more than the example)
 		html += `<p>Height: ${pokemonData.height}</p>`;
 		html += `<p>Weight: ${pokemonData.weight}</p>`;
-		html += `<p>Types: ${pokemonData.types
-			.map((t) => t.type.name)
-			.join(", ")}</p>`;
-		html += `<p>Abilities: ${pokemonData.abilities
-			.map((a) => a.ability.name)
-			.join(", ")}</p>`;
+		html += `<p>Types: ${pokemonData.types.map((t) => t.type.name).join(", ")}</p>`;
+		html += `<p>Abilities: ${pokemonData.abilities.map((a) => a.ability.name).join(", ")}</p>`;
 
 		pokedataDiv.innerHTML = html;
 	} catch (err) {
