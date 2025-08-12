@@ -6,42 +6,43 @@ const pokedataDiv = document.getElementById("pokemonData");
 
 const baseURL = "https://pokeapi.co/api/v2/pokemon/";
 
-infoBtn.addEventListener("click", async () => {
-	var pokemonName = pokemonNameInput.value.toLowerCase();
-	var url = baseURL + pokemonName;
+infoBtn.addEventListener("click", fetchPokemon(pokemonNameInput.value));
 
+function capitalize(word) {
+	return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
+async function fetchPokemon(name) {
+	const url = baseURL + name.toLowerCase();
 	try {
 		const response = await fetch(url);
-		if (!response.ok) {
-			throw new Error("Pokemon not Found");
-		}
+		if (!response.ok) throw new Error("Pokemon not Found");
 		const pokemonData = await response.json();
 
-		let html = `
+		displayPokemonData(pokemonData);
+	} catch (error) {
+		pokedataDiv.innerHTML = `<p style="color:red">${error.message}</p>`;
+	}
+}
+
+function displayPokemonData(pokemonData) {
+	let html = `
           <h2>${pokemonData.name.toUpperCase()}</h2>
           <img src="${pokemonData.sprites.front_default}" alt="${pokemonData.name}">
         `;
 
-		// lbs
-		const pokemonWeight = (pokemonData.weight * 0.220462).toFixed(2);
+	// lbs
+	const pokemonWeight = (pokemonData.weight * 0.220462).toFixed(2);
 
-		// feet
-		const totalInches = pokemonData.height * 3.937;
-		const feet = Math.floor(totalInches / 12);
-		const inches = Math.round(totalInches % 12);
+	// feet
+	const totalInches = pokemonData.height * 3.937;
+	const feet = Math.floor(totalInches / 12);
+	const inches = Math.round(totalInches % 12);
 
-		html += `<p>Height: ${feet}' ${inches}" </p>`;
-		html += `<p>Weight: ${pokemonWeight}lbs</p>`;
-		html += `<p>Types: ${pokemonData.types.map((t) => capitalize(t.type.name)).join(" / ")}</p>`;
-		html += `<p>Abilities: ${pokemonData.abilities.map((a) => capitalize(a.ability.name)).join(" / ")}</p>`;
+	html += `<p>Height: ${feet}' ${inches}" </p>`;
+	html += `<p>Weight: ${pokemonWeight}lbs</p>`;
+	html += `<p>Types: ${pokemonData.types.map((t) => capitalize(t.type.name)).join(" / ")}</p>`;
+	html += `<p>Abilities: ${pokemonData.abilities.map((a) => capitalize(a.ability.name)).join(" / ")}</p>`;
 
-		pokedataDiv.innerHTML = html;
-	} catch (err) {
-		pokedataDiv.innerHTML = `<p style="color:red">${err.message}</p>`;
-	}
-	if (!pokedataDiv.classList.contains("card")) pokedataDiv.classList.add("card");
-});
-
-function capitalize(word) {
-	return word.charAt(0).toUpperCase() + word.slice(1);
+	pokedataDiv.innerHTML = html;
 }
