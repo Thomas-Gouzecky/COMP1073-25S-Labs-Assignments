@@ -6,7 +6,11 @@ const pokedataDiv = document.getElementById("pokemonData");
 
 const baseURL = "https://pokeapi.co/api/v2/pokemon/";
 
-infoBtn.addEventListener("click", fetchPokemon(pokemonNameInput.value));
+infoBtn.addEventListener("click", () => fetchPokemon(pokemonNameInput.value));
+
+window.onload = () => {
+	displayRecentPokemon();
+};
 
 function capitalize(word) {
 	return word.charAt(0).toUpperCase() + word.slice(1);
@@ -20,9 +24,12 @@ async function fetchPokemon(name) {
 		const pokemonData = await response.json();
 
 		displayPokemonData(pokemonData);
+
+		savePokemon(pokemonData);
 	} catch (error) {
 		pokedataDiv.innerHTML = `<p style="color:red">${error.message}</p>`;
 	}
+	if (!pokedataDiv.classList.contains("card")) pokedataDiv.classList.add("card");
 }
 
 function displayPokemonData(pokemonData) {
@@ -45,4 +52,49 @@ function displayPokemonData(pokemonData) {
 	html += `<p>Abilities: ${pokemonData.abilities.map((a) => capitalize(a.ability.name)).join(" / ")}</p>`;
 
 	pokedataDiv.innerHTML = html;
+}
+
+function savePokemon(pokemonData) {
+	// Load saved array or create empty
+	let saved = JSON.parse(localStorage.getItem("recentPokemon") || "[]");
+
+	// Check if Pokémon is already saved
+	if (!saved.some((p) => p.name === pokemonData.name)) {
+		// Save only name and sprite
+		saved.push({
+			name: pokemonData.name,
+			image: pokemonData.sprites.front_default,
+		});
+		localStorage.setItem("recentPokemon", JSON.stringify(saved));
+	}
+
+	displayRecentPokemon();
+}
+
+async function displayRecentPokemon() {
+	const recentContainer = document.querySelector("aside");
+	let saved = JSON.parse(localStorage.getItem("recentPokemon") || "[]");
+
+	if (saved.length === 0) {
+		recentContainer.innerHTML = `<h1>Recent Pokémon</h1><p>No Pokémon saved yet.</p>`;
+		return;
+	}
+
+	let html = `<h1>Recent Pokémon</h1><div  ">`;
+
+	// shows each saved pokemon
+	saved
+		.slice()
+		.reverse()
+		.forEach((p) => {
+			html += `
+      <div onclick="fetchPokemon('${p.name}')">
+        <img src="${p.image}" alt="${p.name}">
+        <p>${capitalize(p.name)}</p>
+      </div>
+    `;
+		});
+
+	html += "</div>";
+	recentContainer.innerHTML = html;
 }
